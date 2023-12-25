@@ -4,7 +4,6 @@ import { useSearchParams } from 'react-router-dom';
 import { getMoviesByQuery } from 'service/filmService';
 import { Button, Form, Input } from './pages.styled';
 const FilmSearchPage = () => {
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState(null);
   const [searchParam, setSearchParam] = useSearchParams();
 

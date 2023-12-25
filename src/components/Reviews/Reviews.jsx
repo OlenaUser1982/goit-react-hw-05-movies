@@ -7,13 +7,13 @@ const Reviews = () => {
   const { movieId } = useParams();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-  // const [error, setError] = useState(null);
+
   useEffect(() => {
     const fn = async () => {
       try {
         setLoading(true);
-        const result = await getReviewsByMovieId(movieId);
-        setData(result.reviews);
+        const results = await getReviewsByMovieId(movieId);
+        setData(results.reviews);
       } catch (error) {
         console.error('Error fetching reviews:', error.message);
       } finally {

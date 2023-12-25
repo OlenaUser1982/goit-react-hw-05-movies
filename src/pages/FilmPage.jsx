@@ -2,7 +2,7 @@ import { makeFullUrlForImages } from 'helpers/makeFullUrlForImages';
 import { H2, Back, Ul, Div, Grate, P } from './pages.styled';
 import { makeGenresList } from 'helpers/makeGenresList';
 import { useEffect, useState, Suspense, useRef } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieById } from 'service/filmService';
 const FilmPage = () => {
   const [data, setData] = useState(null);
