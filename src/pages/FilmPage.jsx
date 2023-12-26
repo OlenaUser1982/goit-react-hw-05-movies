@@ -43,7 +43,7 @@ const FilmPage = () => {
               <Back to="cast">Cast</Back>
             </li>
             <li>
-              <Back>Reviews</Back>
+              <Back to="reviews">Reviews</Back>
             </li>
           </Ul>
           <Suspense>
