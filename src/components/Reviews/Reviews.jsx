@@ -13,7 +13,7 @@ const Reviews = () => {
       try {
         setLoading(true);
         const result = await getReviewsByMovieId(movieId);
-        setData(result.reviews);
+        setData(result.results);
       } catch (error) {
         console.error('Error fetching reviews:', error.message);
       } finally {
