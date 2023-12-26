@@ -1,5 +1,5 @@
 import { makeFullUrlForImages } from 'helpers/makeFullUrlForImages';
-import { H2, Back, Ul, Div, Grate, P } from './pages.styled';
+import { Back, Ul, Grate, P, Obgrate, Span } from './pages.styled';
 import { makeGenresList } from 'helpers/makeGenresList';
 import { useEffect, useState, Suspense, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
@@ -18,9 +18,9 @@ const FilmPage = () => {
     fn();
   }, [movieId]);
   return (
-    <>
+    <Obgrate>
       {data && (
-        <Div>
+        <div>
           <Back to={backLink.current}>Go back</Back>
           <Grate>
             <img
@@ -28,9 +28,9 @@ const FilmPage = () => {
               alt={data.title}
               width="250"
             />
-            <H2>
-              <span>{data.title}</span>
-            </H2>
+            <h2>
+              <Span>{data.title}</Span>
+            </h2>
             <P>User Score: </P>
             <p> {data.vote_average * 10}%</p>
             <P>Overview </P>
@@ -49,9 +49,9 @@ const FilmPage = () => {
           <Suspense>
             <Outlet />
           </Suspense>
-        </Div>
+        </div>
       )}
-    </>
+    </Obgrate>
   );
 };
 export default FilmPage;

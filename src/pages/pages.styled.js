@@ -9,16 +9,16 @@ export const Headers = styled.header`
   background: #f9f9f9;
   //
 `;
-export const H2 = styled.h2`
-  color: #111;
-  text-align: center;
-  width: 250px;
-  height: 35px;
-  font-size: 15px;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin: 0 0 5px 0;
-`;
+// export const H2 = styled.h2`
+//   color: #111;
+//   text-align: center;
+//   width: 250px;
+//   height: 35px;
+//   font-size: 15px;
+//   font-weight: 700;
+//   text-transform: uppercase;
+//   margin: 0 0 5px 0;
+// `;
 export const Form = styled.form`
   display: flex;
   align-items: center;
@@ -55,8 +55,12 @@ export const Input = styled.input`
   cursor: pointer;
   outline: none;
 `;
+export const Span = styled.span`
+  display: flex;
+  flex-direction: column;
+`;
 
-export const Div = styled.div`
+export const Obgrate = styled.div`
   padding: 0 15px 15px 15px;
 `;
 
@@ -78,7 +82,7 @@ export const P = styled.p`
 `;
 
 export const Back = styled(Link)`
-  margin-top: 15px;
+  margin-top: 20px;
   text-decoration: none;
   background-color: blueviolet;
   color: white;
@@ -89,6 +93,6 @@ export const Back = styled(Link)`
 export const Ul = styled.ul`
   display: flex;
   list-style: none;
-  gap: 15px;
+  gap: 20px;
   padding: 15px;
 `;
