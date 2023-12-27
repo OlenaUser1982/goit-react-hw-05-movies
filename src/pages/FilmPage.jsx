@@ -6,6 +6,7 @@ import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieById } from 'service/filmService';
 import Loader from 'components/Loader/Loader';
 const FilmPage = () => {
+  const defaultImg = `https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700`;
   const [data, setData] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +41,11 @@ const FilmPage = () => {
               <div>
                 <Grate>
                   <img
-                    src={makeFullUrlForImages(data.poster_path)}
+                    src={
+                      data.poster_path
+                        ? makeFullUrlForImages(data.poster_path)
+                        : defaultImg
+                    }
                     alt={data.title}
                     width="250"
                   />

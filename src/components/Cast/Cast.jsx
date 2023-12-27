@@ -6,6 +6,7 @@ import { getCastByMovieId } from 'service/filmService';
 import { Ul } from './Cast.styled';
 
 const Cast = () => {
+  const defaultImg = `https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700`;
   const { movieId } = useParams();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -35,7 +36,9 @@ const Cast = () => {
         data.map(({ id, name, profile_path }) => (
           <li key={id}>
             <img
-              src={makeFullUrlForImages(profile_path)}
+              src={
+                profile_path ? makeFullUrlForImages(profile_path) : defaultImg
+              }
               alt={name}
               width="150"
             />
