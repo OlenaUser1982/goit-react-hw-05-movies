@@ -3,9 +3,12 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getMoviesByQuery } from 'service/filmService';
 import { Button, Form, Input } from './pages.styled';
+import Loader from 'components/Loader/Loader';
 const FilmSearchPage = () => {
   const [movies, setMovies] = useState(null);
   const [searchParam, setSearchParam] = useSearchParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const query = searchParam.get('query');
@@ -22,6 +25,8 @@ const FilmSearchPage = () => {
   };
   return (
     <>
+      {isLoading && <Loader />}
+      {error && <p>Something went wrong...</p>}
       <Form onSubmit={handleSubmit}>
         <Input type="text" name="search" />
         <Button type="submit">Submit</Button>

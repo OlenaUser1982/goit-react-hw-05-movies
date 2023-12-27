@@ -14,9 +14,11 @@ export const Ul = styled.ul`
 
 export const Img = styled.img`
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 8px;
   transition: transform 0.3s ease;
+  object-fit: cover;
+  display: block;
 
   &:hover {
     transform: scale(1.1);

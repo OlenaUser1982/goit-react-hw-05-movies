@@ -10,11 +10,7 @@ const MoviesList = ({ movies }) => {
         <li key={id}>
           <Link to={`/movies/${id}`} state={{ from: location }}>
             <Img
-              src={
-                makeFullUrlForImages(poster_path)
-                  ? [`https://image.tmdb.org/t/p/w500${poster_path}`]
-                  : defaultImg
-              }
+              src={poster_path ? makeFullUrlForImages(poster_path) : defaultImg}
               width="250"
               alt={title}
             />

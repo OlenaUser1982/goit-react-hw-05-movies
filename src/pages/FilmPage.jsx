@@ -4,8 +4,13 @@ import { makeGenresList } from 'helpers/makeGenresList';
 import { useEffect, useState, Suspense, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieById } from 'service/filmService';
+import Loader from 'components/Loader/Loader';
 const FilmPage = () => {
   const [data, setData] = useState(null);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const { movieId } = useParams();
   const location = useLocation();
   const backLink = useRef(location.state?.from ?? '/');
@@ -18,40 +23,52 @@ const FilmPage = () => {
     fn();
   }, [movieId]);
   return (
-    <Obgrate>
+    <>
+      {isLoading && <Loader />}
+      {error && <p>Something went wrong...</p>}
       {data && (
-        <div>
-          <Back to={backLink.current}>Go back</Back>
-          <Grate>
-            <img
-              src={makeFullUrlForImages(data.poster_path)}
-              alt={data.title}
-              width="250"
-            />
-            <h2>
-              <Span>{data.title}</Span>
-            </h2>
-            <P>User Score: </P>
-            <p> {data.vote_average * 10}%</p>
-            <P>Overview </P>
-            <p>{data.overview}</p>
-            <P>Genres </P>
-            <p>{makeGenresList(data.genres)} </p>
-          </Grate>
-          <Ul>
-            <li>
-              <Back to="cast">Cast</Back>
-            </li>
-            <li>
-              <Back to="reviews">Reviews</Back>
-            </li>
-          </Ul>
-          <Suspense>
-            <Outlet />
-          </Suspense>
-        </div>
+        <Obgrate>
+          {data && (
+            <div>
+              <Back to={backLink.current}>Go back</Back>
+              <div>
+                <Grate>
+                  <img
+                    src={makeFullUrlForImages(data.poster_path)}
+                    alt={data.title}
+                    width="250"
+                  />
+                  <div>
+                    <h2>
+                      <Span>{data.title}</Span>
+                    </h2>
+                    <Grate>
+                      <p>User Score: </p>
+                      <p> {data.vote_average * 10}%</p>
+                    </Grate>
+                    <P>Overview </P>
+                    <p>{data.overview}</p>
+                    <P>Genres </P>
+                    <p>{makeGenresList(data.genres)} </p>
+                  </div>
+                </Grate>
+              </div>
+              <Ul>
+                <li>
+                  <Back to="cast">Cast</Back>
+                </li>
+                <li>
+                  <Back to="reviews">Reviews</Back>
+                </li>
+              </Ul>
+              <Suspense>
+                <Outlet />
+              </Suspense>
+            </div>
+          )}
+        </Obgrate>
       )}
-    </Obgrate>
+    </>
   );
 };
 export default FilmPage;
