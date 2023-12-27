@@ -13,7 +13,14 @@ const HomePage = () => {
       const { results } = await getTrendingMovies();
       setMovies(results);
     };
-    fn();
+    try {
+      setIsLoading(true);
+      fn();
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
   return (
     <>

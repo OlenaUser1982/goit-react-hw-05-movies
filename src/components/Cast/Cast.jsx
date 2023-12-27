@@ -9,7 +9,7 @@ const Cast = () => {
   const { movieId } = useParams();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-
+  const [error, setError] = useState(null);
   useEffect(() => {
     const fn = async () => {
       try {
@@ -17,6 +17,7 @@ const Cast = () => {
         const result = await getCastByMovieId(movieId);
         setData(result.cast);
       } catch (error) {
+        setError(error);
         console.error('Error fetching cast:', error.message);
       } finally {
         setLoading(false);
@@ -29,6 +30,7 @@ const Cast = () => {
   return (
     <Ul>
       {loading && <Loader />}
+      {error && <p>Something went wrong...</p>}
       {data &&
         data.map(({ id, name, profile_path }) => (
           <li key={id}>

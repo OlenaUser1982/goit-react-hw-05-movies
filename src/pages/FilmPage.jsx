@@ -19,8 +19,14 @@ const FilmPage = () => {
       const data = await getMovieById(movieId);
       setData(data);
     };
-
-    fn();
+    try {
+      setIsLoading(true);
+      fn();
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   }, [movieId]);
   return (
     <>

@@ -7,7 +7,7 @@ const Reviews = () => {
   const { movieId } = useParams();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-
+  const [error, setError] = useState(null);
   useEffect(() => {
     const fn = async () => {
       try {
@@ -15,6 +15,7 @@ const Reviews = () => {
         const result = await getReviewsByMovieId(movieId);
         setData(result.results);
       } catch (error) {
+        setError(error);
         console.error('Error fetching reviews:', error.message);
       } finally {
         setLoading(false);
@@ -25,6 +26,7 @@ const Reviews = () => {
   return (
     <ul>
       {loading && <Loader />}
+      {error && <p>Something went wrong...</p>}
       {data &&
         data.map(({ id, author, content }) => (
           <li key={id}>

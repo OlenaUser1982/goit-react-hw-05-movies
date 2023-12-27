@@ -17,7 +17,14 @@ const FilmSearchPage = () => {
       const data = await getMoviesByQuery(query);
       setMovies(data.results);
     };
-    fn();
+    try {
+      setIsLoading(true);
+      fn();
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   }, [searchParam]);
   const handleSubmit = e => {
     e.preventDefault();
